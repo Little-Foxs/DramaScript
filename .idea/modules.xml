@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DramaScript.iml" filepath="$PROJECT_DIR$/DramaScript.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DramaScriptLibs/DramaScriptLibs.iml" filepath="$PROJECT_DIR$/DramaScriptLibs/DramaScriptLibs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DramaScriptModule/DramaScriptModule.iml" filepath="$PROJECT_DIR$/DramaScriptModule/DramaScriptModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+    </modules>
+  </component>
+</project>

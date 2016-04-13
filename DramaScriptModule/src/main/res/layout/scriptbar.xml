@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    app:title="">
+
+    <TextView
+        android:id="@+id/toolbar_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="LigthingBar"
+        android:textColor="#fff"
+        android:textSize="16dp" />
+
+
+    <FrameLayout
+        android:id="@+id/tv_ligthingbar_rigth"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Rigth"
+            android:layout_marginRight="12dp"
+            android:textColor="#fff"
+            android:textSize="14dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_ligthingbar_left"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Left"
+            android:textColor="#fff"
+            android:textSize="14dp" />
+    </FrameLayout>
+
+
+</android.support.v7.widget.Toolbar>
