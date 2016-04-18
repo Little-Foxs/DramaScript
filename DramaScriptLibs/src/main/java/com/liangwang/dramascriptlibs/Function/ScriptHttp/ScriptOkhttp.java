@@ -50,12 +50,12 @@ public class ScriptOkhttp {
     private OkHttpClient okHttpClient;
 
     private static ScriptOkhttp okHttpFinal;
-    private OkHttpFinalConfiguration configuration;
+    private OkHttpScriptConfiguration configuration;
 
     private ScriptOkhttp() {
     }
 
-    public synchronized void init(OkHttpFinalConfiguration configuration) {
+    public synchronized void init(OkHttpScriptConfiguration configuration) {
         this.configuration = configuration;
 
         long timeout = configuration.getTimeout();

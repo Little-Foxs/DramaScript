@@ -49,7 +49,7 @@ import okio.Buffer;
  *
  * 描述：整个okhttp的配置文件
  */
-public class OkHttpFinalConfiguration {
+public class OkHttpScriptConfiguration {
 
     private List<Sliet> commonParams;
     protected Headers commonHeaders;
@@ -70,7 +70,7 @@ public class OkHttpFinalConfiguration {
     private SSLSocketFactory sslSocketFactory;
     private Dispatcher dispatcher;
 
-    private OkHttpFinalConfiguration(final Builder builder) {
+    private OkHttpScriptConfiguration(final Builder builder) {
         this.commonParams = builder.commonParams;
         this.commonHeaders = builder.commonHeaders;
         this.certificateList = builder.certificateList;
@@ -333,8 +333,8 @@ public class OkHttpFinalConfiguration {
             return this;
         }
 
-        public OkHttpFinalConfiguration build() {
-            return new OkHttpFinalConfiguration(this);
+        public OkHttpScriptConfiguration build() {
+            return new OkHttpScriptConfiguration(this);
         }
     }
 
