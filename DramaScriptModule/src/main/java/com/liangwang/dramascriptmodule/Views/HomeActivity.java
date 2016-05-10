@@ -1,4 +1,4 @@
-package com.liangwang.dramascriptmodule;
+package com.liangwang.dramascriptmodule.Views;
 
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
@@ -15,9 +15,12 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Transformation;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.liangwang.dramascriptlibs.Function.ScriptLogger.ScriptLogger;
 import com.liangwang.dramascriptlibs.UI.ScriptBarView;
+import com.liangwang.dramascriptmodule.R;
 import com.liangwang.dramascriptmodule.Views.Fragment1;
 import com.liangwang.dramascriptmodule.Views.Fragment2;
 import com.liangwang.dramascriptmodule.Views.Fragment3;
@@ -66,6 +69,9 @@ public class HomeActivity extends AppCompatActivity{
     private float maxSize = 0;
     private int initY = 0;
     private long durationMillis = 500;
+
+
+    //闪动动画
     private Animation animation = new Animation() {
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {

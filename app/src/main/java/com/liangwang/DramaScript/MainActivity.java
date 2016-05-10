@@ -1,9 +1,11 @@
 package com.liangwang.DramaScript;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.liangwang.dramascriptlibs.Function.Tools.SharedPreferencesUtil;
 import com.liangwang.dramascriptlibs.UI.TimeView;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,9 +34,15 @@ public class MainActivity extends AppCompatActivity {
         //设置原点的最小值
         mWeightView.setOriginValueSmall(1);
         //设置滑动的监听
+        mWeightView.flag = 93;
+        mWeightView.flag2 = 95;
+
+//        SharedPreferencesUtil.getInstance(this).setInt("flag",95);
+
         mWeightView.setValueChangeListener(new TimeView.OnValueChangeListener() {
             @Override
             public void onValueChange(String intVal, int fltval) {
+
                 mWeightTv.setText(intVal);
             }
         });

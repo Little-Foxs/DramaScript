@@ -1,0 +1,53 @@
+ext{
+
+    //Version
+    supportVersion = '23.3.0'
+    junitVersion = '4.12'
+    fastjsonVersion = '1.1.46.android'
+    butterknifeVersion = '7.0.1'
+    toolsfinalVersion = '1.1.5'
+    rxandroidVersion = '1.1.0'
+    rxjavaVersion = '1.1.0'
+    materializeVersion = '0.2.7@aar'
+    retrofitVersion = '2.0.2'
+
+    //Packages
+    supportPackage = 'com.android.support'
+    junitPackage = 'junit'
+    fastjsonPackage = 'com.alibaba'
+    butterknifePackage = 'com.jakewharton'
+    toolsfinalPackage = 'cn.finalteam'
+    rxandroidPackage = 'io.reactivex'
+    rxjavaPackage = 'io.reactivex'
+    materializePackage = 'com.mikepenz'
+    retrofitPackage = 'com.squareup.retrofit2'
+
+    supportDependencies = [
+            appCompat        : buildDependency(supportPackage, 'appcompat-v7', supportVersion),
+    ]
+
+    testingDependencies = [
+            junit      : buildDependency(junitPackage, 'junit', junitVersion),
+    ]
+
+    rxDependencies = [
+            rxandroid : buildDependency(rxandroidPackage,'rxandroid',rxandroidVersion),
+            rxjava : buildDependency(rxjavaPackage,'rxjava',rxjavaVersion)
+    ]
+
+    toolDependencies = [
+            fastjson : buildDependency(fastjsonPackage,'fastjson',fastjsonVersion),
+            butterknife : buildDependency(butterknifePackage,'butterknife',butterknifeVersion),
+            toolsfinal : buildDependency(toolsfinalPackage,'toolsfinal',toolsfinalVersion),
+            materialize : buildDependency(materializePackage,'materialize',butterknifeVersion),
+    ]
+
+    retrofitDependencies = [
+            retrofit     : buildDependency(retrofitPackage, 'retrofit', retrofitVersion),
+    ]
+}
+
+//通过 这个方法建立连接
+String buildDependency(String pack, String dependency, String version) {
+    return "${pack}:${dependency}:${version}"
+}

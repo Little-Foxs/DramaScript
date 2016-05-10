@@ -16,6 +16,7 @@ import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Scroller;
 
+import com.liangwang.dramascriptlibs.Function.Tools.SharedPreferencesUtil;
 import com.liangwang.dramascriptlibs.Function.Tools.UITools;
 
 import java.text.SimpleDateFormat;
@@ -138,11 +139,16 @@ public class TimeView extends View {
     private Scroller mScroller;
     protected VelocityTracker mVelocityTracker;
 
+    public int flag;
+    public int flag2;
+
+
     private OnValueChangeListener listener;
     //系统当前的时间  毫秒
-    private static long  currentTimeMillis = System.currentTimeMillis();
+    private static long currentTimeMillis = System.currentTimeMillis();
     private static long s;
     private String caculateTime;
+    private long val;
 
     public interface OnValueChangeListener {
         void onValueChange(String intVal, int fltval);
@@ -168,18 +174,24 @@ public class TimeView extends View {
 
         mMinVelocity = ViewConfiguration.get(getContext())
                 .getScaledMinimumFlingVelocity();
-
         initValue();
-
         initPaint();
 
     }
 
+
     private void initPaint() {
         mBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mBgPaint.setColor(Color.argb(255, 224, 95, 23));
-
+        flag = SharedPreferencesUtil.getInstance(getContext()).getInt("flag");
+//        Log.e("flag", "flag=" + flag+"flag2="+flag2);
         mShortLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        /*if (flag>94&&flag<96){
+            mShortLinePaint.setColor(Color.RED);
+            Log.e("flag","flag="+flag);
+        }else {
+            mShortLinePaint.setColor(Color.WHITE);
+        }*/
         mShortLinePaint.setColor(Color.WHITE);
         mShortLinePaint.setStrokeWidth(mShortLineWidth);
 
@@ -209,7 +221,7 @@ public class TimeView extends View {
         //设置长线的长度
         mHighLineHeight = UITools.convertDpToPixel(mContext, 35.3f);
         //设置短线的高度
-        mShortLineHeight = UITools.convertDpToPixel(mContext, 0.0f);
+        mShortLineHeight = UITools.convertDpToPixel(mContext, 6.0f);
         //设置指示器数字距离上边的距离
         mIndicatorTextTopMargin = UITools.convertDpToPixel(mContext, 15f);
         //两条长线的默认数量
@@ -284,11 +296,10 @@ public class TimeView extends View {
         mOffset = mMoveX - (int) (mMoveX / mPartitionWidth) * mPartitionWidth;
 
 
-
         // 画长线和短线
         for (int i = -halfCount - 1; i <= halfCount + 1; i++) {
             //表示每个长线的刻度值
-            long val = mCurrentValue + i * mPartitionValue;
+            val = mCurrentValue + i * mPartitionValue;
             //只绘出范围内的图形
             if (val >= mStartValue && val <= mEndValue) {
                 //画长的刻度
@@ -300,7 +311,7 @@ public class TimeView extends View {
                     caculateTime = caculateTime(val, mCurrentValue);
 
                     //画刻度值
-                    canvas.drawText(caculateTime + "", mWidth / 2 + mOffset + i * mPartitionWidth - mIndicatorTxtPaint.measureText(val + "") / 2,
+                    canvas.drawText(val + "", mWidth / 2 + mOffset + i * mPartitionWidth - mIndicatorTxtPaint.measureText(val + "") / 2,
                             0 + mLineTopMargin + mHighLineHeight + mIndicatorTextTopMargin + UITools.calcTextHeight(mIndicatorTxtPaint, val + ""), mIndicatorTxtPaint);
                 }
 
@@ -309,8 +320,13 @@ public class TimeView extends View {
                     for (int j = 1; j < mSmallPartitionCount; j++) {
                         float start_x = mWidth / 2 + mOffset + i * mPartitionWidth + j * mPartitionWidth / mSmallPartitionCount;
                         if (start_x > 0 && start_x < mWidth) {
+                            if (flag==val || flag ==val) {
+                                mShortLinePaint.setColor(Color.RED);
+                                Log.e("flag", "flag=" + flag+"flag2"+flag2+"mCurrentValue="+mCurrentValue);
+                            }
                             canvas.drawLine(mWidth / 2 + mOffset + i * mPartitionWidth + j * mPartitionWidth / mSmallPartitionCount, 0 + mLineTopMargin,
                                     mWidth / 2 + mOffset + i * mPartitionWidth + j * mPartitionWidth / mSmallPartitionCount, 0 + mLineTopMargin + mShortLineHeight, mShortLinePaint);
+
                         }
                     }
                 }
@@ -323,9 +339,9 @@ public class TimeView extends View {
 //            long s = System.currentTimeMillis() - mCurrentValue * 15 * 60 * 1000 - (int) (mOffset / (mPartitionWidth / mSmallPartitionCount));
             s = currentTimeMillis - (int) (mOffset / (mPartitionWidth / mSmallPartitionCount)) * 1000;
             int kong = 96 - mCurrentValue;
-            if(kong>0){
-                s = s - kong *(int) (mOffset / (mPartitionWidth / mSmallPartitionCount)) * 1000;
-                Log.e("kong", "间隔数=" + kong+",减的数目="+kong *(int) (mOffset / (mPartitionWidth / mSmallPartitionCount)) * 1000);
+            if (kong > 0) {
+                s = s - kong * (int) (mOffset / (mPartitionWidth / mSmallPartitionCount)) * 1000;
+                Log.e("kong", "间隔数=" + kong + ",减的数目=" + kong * (int) (mOffset / (mPartitionWidth / mSmallPartitionCount)) * 1000);
             }
 
             /*for (int i =0;i<=kong;i++){

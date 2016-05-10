@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.DramaScript'
+
 
 android {
     compileSdkVersion 23
@@ -16,25 +19,38 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    //防止方法数目过多 导致安装失败
+    dexOptions {
+        javaMaxHeapSize "2g"
+    }
+
+    //防止不同jar包或者 so文件方法重复问题
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
+    testCompile testingDependencies.junit
+    compile supportDependencies.appCompat
 
     compile files('libs/afinal_0.5.1_bin.jar')
     compile files('libs/gson-2.3.1.jar')
     compile files('libs/jackson-all-1.9.11.jar')
-    compile files('libs/okhttp-3.2.0.jar')
-    compile files('libs/okio-1.6.0.jar')
 
     compile files('libs/jackson-all-1.9.11.jar')
-    compile 'com.alibaba:fastjson:1.1.46.android'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'cn.finalteam:toolsfinal:1.1.5'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'io.reactivex:rxjava:1.1.0'
+    compile toolDependencies.fastjson
+    compile toolDependencies.butterknife
+    compile toolDependencies.toolsfinal
+    compile rxDependencies.rxandroid
+    compile rxDependencies.rxjava
+    compile retrofitDependencies.retrofit
 
     compile 'com.mikepenz:materialize:0.2.7@aar'
     compile('com.mikepenz:materialdrawer:5.1.6@aar') {
